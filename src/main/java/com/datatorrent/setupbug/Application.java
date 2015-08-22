@@ -35,6 +35,7 @@ public class Application implements StreamingApplication
   public static class SetupOperator implements Operator
   {
     private transient boolean setupCalled = false;
+    private transient long windowCount = 0;
 
     public final DefaultInputPort<Double> inputPort = new DefaultInputPort<Double>() {
       @Override
@@ -59,11 +60,15 @@ public class Application implements StreamingApplication
     @Override
     public void beginWindow(long l)
     {
+      if(windowCount > 10) {
+        throw new RuntimeException("End");
+      }
     }
 
     @Override
     public void endWindow()
     {
+      windowCount++;
     }
 
     @Override
