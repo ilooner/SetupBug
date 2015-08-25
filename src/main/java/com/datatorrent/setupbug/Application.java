@@ -26,7 +26,7 @@ public class Application implements StreamingApplication
     // Replace this code with the DAG you want to build
 
     RandomNumberGenerator randomGenerator = dag.addOperator("randomGenerator", RandomNumberGenerator.class);
-    randomGenerator.setNumTuples(500);
+    randomGenerator.setNumTuples(10000);
     SetupOperator setupOperator = dag.addOperator("SetupOperator", SetupOperator.class);
 
     dag.addStream("randomData", randomGenerator.out, setupOperator.inputPort);
