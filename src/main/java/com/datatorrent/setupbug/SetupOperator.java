@@ -12,6 +12,8 @@ import com.datatorrent.api.Operator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.logging.Level;
+
 public class SetupOperator implements Operator
 {
   private transient boolean setupCalled = false;
@@ -42,6 +44,13 @@ public class SetupOperator implements Operator
   public void beginWindow(long l)
   {
     if (windowCount > 10) {
+      try {
+        Thread.sleep(10);
+      } catch (InterruptedException ex) {
+        throw new RuntimeException(ex);
+      }
+
+      Thread.currentThread().interrupt();
       throw new RuntimeException("End");
     }
   }
