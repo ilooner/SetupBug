@@ -17,7 +17,7 @@ public class SetupOperator implements Operator
   private transient boolean setupCalled = false;
   private transient long windowCount = 0;
 
-  public final DefaultInputPort<Double> inputPort = new DefaultInputPort<Double>()
+  public transient final DefaultInputPort<Double> inputPort = new DefaultInputPort<Double>()
   {
     @Override
     public void process(Double t)
@@ -26,7 +26,6 @@ public class SetupOperator implements Operator
         LOG.info("Setup called.");
       }
     }
-
   };
 
   public SetupOperator()
